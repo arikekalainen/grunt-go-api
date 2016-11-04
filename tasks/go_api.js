@@ -75,7 +75,7 @@ module.exports = function(grunt) {
           if (this.data.flags && this.data.flags !== "") {
               command += " -i " + this.data.flags;
           }
-          command += " " + sourceFiles.toString().replace(",", ""); 
+          command += " " + sourceFiles.toString().replace(",", " "); 
 
           // push to command list
           commands.push(command);
