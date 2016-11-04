@@ -2,13 +2,18 @@
 
 > Go command api plugin for running go commands
 
+## Ref
+Plugin template was generated using guide from http://gruntjs.com/creating-plugins
+
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
+Since this 'grunt go api' plugin lacks many of go commands currently, the plugin is not published to npm yet.
+So, installing via git refence...
 ```shell
-npm install grunt-go-api --save-dev
+npm install git://github.com/arikekalainen/grunt-go-api --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
@@ -40,7 +45,7 @@ grunt.initConfig({
 
 ### Usage Examples
 
-#### Build go app
+#### Build and run go app
 In this example myapp application is build from hello.go and world.go source files
 
 ```js
@@ -48,31 +53,12 @@ grunt.initConfig({
   go_api: {
     build: {
       src: ["hello.go", "world.go"],
-      app: "myapp
-
-  },
+      app: "myapp"
+    },
+    run: {
+      src: ["hello.go"]
+    }
+  }
 });
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  go_api: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
-
-## Release History
-_(Nothing yet)_
