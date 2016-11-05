@@ -12,39 +12,18 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-    jshint: {
-      all: [
-        'Gruntfile.js',
-        'tasks/*.js',
-        '<%= nodeunit.tests %>'
-      ],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    },
+    
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp']
+      tests: ['./test/expected/hellow*']
     },
 
     // Configuration to be run (and then tested).
     go_api: {
-      default_options: {
-        options: {
-        },
-        files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!'
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123']
-        }
+      build: {
+        src: ["./test/resources/*.go"],
+        app: "./test/expected/helloworld"
       }
     },
 
@@ -63,11 +42,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
+  // Test task: clean, go_api and nodeunit tests
   grunt.registerTask('test', ['clean', 'go_api', 'nodeunit']);
 
-  // By default, lint and run all tests.
-  grunt.registerTask('default', ['jshint', 'test']);
+  // By default, execute 'test' task
+  grunt.registerTask('default', ['test']);
 
 };

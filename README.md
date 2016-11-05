@@ -3,15 +3,17 @@
 > Go command api plugin for running go commands
 
 ## Ref
-Plugin template was generated using guide from http://gruntjs.com/creating-plugins
+Plugin's template was generated using guide from http://gruntjs.com/creating-plugins
 
 ## Getting Started
-This plugin requires Grunt `~0.4.5`
+This plugin requires
+- ES6
+- Grunt `~0.4.5`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 Since this 'grunt go api' plugin lacks many of go commands currently, the plugin is not published to npm yet.
-So, installing via git refence...
+So, installing only via git reference...
 ```shell
 npm install git://github.com/arikekalainen/grunt-go-api --save-dev
 ```
@@ -22,7 +24,7 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-go-api');
 ```
 
-## The "go_api" task
+## The 'go_api' task
 
 ### Overview
 In your project's Gruntfile, add a section named `go_api` to the data object passed into `grunt.initConfig()`.

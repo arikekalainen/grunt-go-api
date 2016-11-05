@@ -1,48 +1,28 @@
-'use strict';
-
-var grunt = require('grunt');
-
 /*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+ * grunt go api plugin tests
+ */
+'use strict';
+const fs = require('fs');
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+exports.go_api_test = {
+    setUp: (done) => {
+        // setup here if necessary
+        done();
+    },
+    // Test build -task
+    test_build: (test) => {
 
-exports.go_api = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
-  },
-  default_options: function(test) {
-    test.expect(1);
+        // check that helloworld executable exists
+        let expectedFile = "./test/expected/"; 
+        expectedFile += process.platform === "win32" ? "helloworld.exe" : "helloworld"; 
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
-
-    test.done();
-  },
-  custom_options: function(test) {
-    test.expect(1);
-
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
-
-    test.done();
-  },
+        fs.access(expectedFile, (err) => {
+            if (err) {
+                test.ok(false, expectedFile + " executable does not exist, build failed?");
+            } else {
+                test.ok(true, "Nice, build works");
+            }
+            test.done();
+        });
+    }
 };
